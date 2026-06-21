@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction RFI & Submittal Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">🏗️</div>
+                <div class="brand-text">
+                    <h1>RFI Assistant</h1>
+                    <span>Construction Co-pilot</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h2>Project Specs Directory</h2>
+                <ul class="spec-list">
+                    <li class="spec-item" onclick="insertSpecQuery('cast_in_place_concrete')">
+                        <span class="file-icon">📄</span>
+                        <div class="file-info">
+                            <span class="file-name">spec_03_30_00_concrete.md</span>
+                            <span class="file-size">Cast-in-Place Concrete</span>
+                        </div>
+                    </li>
+                    <li class="spec-item" onclick="insertSpecQuery('structural_steel')">
+                        <span class="file-icon">📄</span>
+                        <div class="file-info">
+                            <span class="file-name">spec_05_12_00_steel.md</span>
+                            <span class="file-size">Structural Steel Framing</span>
+                        </div>
+                    </li>
+                    <li class="spec-item" onclick="insertSpecQuery('electrical')">
+                        <span class="file-icon">📄</span>
+                        <div class="file-info">
+                            <span class="file-name">spec_26_05_00_electrical.md</span>
+                            <span class="file-size">Common Work Results</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-text">System Status: Online</span>
+                </div>
+                <div class="mcp-badge">MCP Filesystem Connected</div>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <header class="chat-header">
+                <div class="header-info">
+                    <h2>Subcontractor RFI Desk</h2>
+                    <p>Enter your inquiry to automatically query project specifications.</p>
+                </div>
+                <button class="clear-btn" onclick="clearConversation()" title="Clear Chat">Clear History</button>
+            </header>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Message -->
+                <div class="message system">
+                    <div class="message-content">
+                        <h3>Welcome to the Subcontractor RFI Assistant!</h3>
+                        <p>I have secure, sandboxed access to the project's concrete, structural steel, and electrical specifications. Ask me any question, and I will search the specifications to provide a precise response with citations.</p>
+                        <div class="suggestion-chips">
+                            <button class="chip" onclick="sendSuggestion('What is the minimum compressive strength for foundation footings?')">What is the concrete strength for footings?</button>
+                            <button class="chip" onclick="sendSuggestion('What are the temperature limits for placing concrete in cold weather?')">What are the cold weather concrete rules?</button>
+                            <button class="chip" onclick="sendSuggestion('What is the minimum conductor size for branch circuits?')">Minimum conductor size for wiring?</button>
+                            <button class="chip" onclick="sendSuggestion('What is the erection tolerance for structural columns?')">What is column erection tolerance?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input area -->
+            <footer class="chat-input-container">
+                <form id="chatForm" class="chat-form" onsubmit="handleFormSubmit(event)">
+                    <input type="text" id="userInput" placeholder="Ask about concrete, steel, electrical specifications..." autocomplete="off" required>
+                    <button type="submit" class="send-btn" id="sendBtn">
+                        <span class="send-icon">➔</span>
+                    </button>
+                </form>
+            </footer>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
